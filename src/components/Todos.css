@@ -1,0 +1,16 @@
+.todos-head{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 600;
+
+}
+
+.todos{
+    margin:10px 25px;
+    padding:20px 50px;
+    border: 1px solid salmon;
+    border-radius: 60px;
+    width: 350px;
+}
+
