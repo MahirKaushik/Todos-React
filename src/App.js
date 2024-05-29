@@ -11,7 +11,7 @@ function App() {
       {/* We apply props through here as we have title and searchBar variable */}
 
       
-      <Header title="My ToDos List"  searchBar={true}/>
+      <Header title="My ToDos List"  searchBar={false}/>
       <Todos />
       <Footer />
     </div>
