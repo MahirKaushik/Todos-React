@@ -10,7 +10,17 @@ export default function Todos(props) {
       {/* the todos object we passed in there will be used here in which we pass oth element of our array in Todo component */}
 
     <div className="todos">
-    <Todo todo={props.todos[0]}/>
+      {
+        props.todos.map((todo)=>{
+          return (
+          
+            
+          <Todo todo={todo}/>
+
+
+        );
+        })}
+   
     </div>
       
       

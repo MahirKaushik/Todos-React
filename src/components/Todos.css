@@ -7,10 +7,20 @@
 }
 
 .todos{
-    margin:10px 25px;
-    padding:20px 50px;
-    border: 1px solid salmon;
-    border-radius: 60px;
-    width: 350px;
+    padding: 20px 20vw;
+    /* border: 1px solid salmon;
+    border-radius: 60px; */
+   
 }
 
+#space{
+    margin: 10px 20px;
+}
+
+.bigb{
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid salmon;
+    width: 350px;
+    border-radius: 20px;
+}
