@@ -12,11 +12,18 @@ import {
   Route
 } from "react-router-dom";
 
+// care about switches currently routes are used with elements
+
+
+
 
 
 
 
 function App() {
+
+
+  // if already some todos import from json file
 
   let initTodo;
   if (localStorage.getItem("todos") === null) {
@@ -26,6 +33,7 @@ function App() {
     initTodo = JSON.parse(localStorage.getItem("todos"));
   }
 
+    // onDelete function using filter to remove the todo flow---todo mein ondelete call vaha se todos vaha se appjs mein
 
   const onDelete = (todo) => {
     console.log('i m ondelete', todo)
@@ -33,8 +41,13 @@ function App() {
       return e !== todo;
     }))
 
+    // updating the json file if element delete
+
     localStorage.setItem("todos", JSON.stringify(todos));
   }
+
+
+  // addTodo function using title and desc to make an object and adding to current todos
 
   const addTodo = (title, desc) => {
     let sno = todos.length + 1;
@@ -53,10 +66,12 @@ function App() {
 
   
 
-  //we made an object to get all the todos
+  //we made an object to get all the todos and initialized with initTodo function
 
   const [todos, setTodos] = useState(initTodo);
 
+
+  //useeffect is used to update todos json file as soon as any change takes place 
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -65,6 +80,9 @@ function App() {
 
 
   return (
+
+    // router is used to go to other links as well
+    
   <Router>
     <div className="App">
       {/* We apply props through here as we have title and searchBar variable */}
