@@ -21,6 +21,12 @@
     margin: 20px;
     padding: 20px;
     border: 1px solid salmon;
-    width: 350px;
+    width: 60vw;
     border-radius: 20px;
+
+
+}
+
+.width-c{
+    width: 40vw;
 }
