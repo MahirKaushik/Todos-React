@@ -10,7 +10,7 @@ export default function Todo(props) {
 
       <h4>{props.todo.sno}. {props.todo.title}</h4>
       <p>{props.todo.desc}</p>
-      <button id='space' className='btn btn-sm btn-danger' >Delete</button>
+      <button id='space' className='btn btn-sm btn-danger' onClick={()=>{props.onDelete(props.todo)}}>Delete</button>
       
     </div>
     
