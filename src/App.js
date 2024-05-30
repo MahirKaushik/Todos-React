@@ -2,11 +2,29 @@ import "./App.css";
 import Header from "./components/Header";
 import Todos from "./components/Todos";
 import Footer from "./components/Footer";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Addtodo from "./components/Addtodo";
+import About from "./components/About"
+import {
+  BrowserRouter as Router,
+  
+  Routes,
+  Route
+} from "react-router-dom";
+
+
+
 
 
 function App() {
+
+  let initTodo;
+  if (localStorage.getItem("todos") === null) {
+    initTodo = [];
+  }
+  else {
+    initTodo = JSON.parse(localStorage.getItem("todos"));
+  }
 
 
   const onDelete = (todo) => {
@@ -14,59 +32,75 @@ function App() {
     setTodos(todos.filter((e) => {
       return e !== todo;
     }))
+
+    localStorage.setItem("todos", JSON.stringify(todos));
   }
 
-  const addTodo=(title,desc)=>{
-    let sno=todos.length+1;
-    const myTodo={
-      sno:sno,  
-      title:title,
-      desc:desc
+  const addTodo = (title, desc) => {
+    let sno = todos.length + 1;
+    const myTodo = {
+      sno: sno,
+      title: title,
+      desc: desc
     }
-    setTodos([...todos,myTodo]);
+    setTodos([...todos, myTodo]);
     console.log(myTodo);
+    
+
   }
 
+
+
+  
 
   //we made an object to get all the todos
 
-  const [todos, setTodos] = useState([
-    {
-      sno: 1,
-      title: "Read the book",
-      desc: 'Read the book daily at 11PM'
-    },
-    {
-      sno: 2,
-      title: "Go to gym",
-      desc: 'Go to gym daily at 5:30'
-    },
-    {
-      sno: 3,
-      title: "Drink water",
-      desc: 'Drink at least 2.5L per day'
-    },
-  ]);
+  const [todos, setTodos] = useState(initTodo);
 
 
-  return (<>
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+
+  }, [todos]);
+
+
+  return (
+  <Router>
     <div className="App">
       {/* We apply props through here as we have title and searchBar variable */}
-
-      <Header title="My ToDos List" searchBar={true} />
-
-      {/* we are adding a component to add new todos to our website */}
+      <Header title="MyTodos" searchBar={true} />
 
 
+      {/* switch is not currently used routes is used with elements as written */}
+      
+    <Routes>
+      <Route exact path="/"
+         
+         element={
+         <>
+            {/* we are adding a component to add new todos to our website */}
+            <Addtodo addTodo={addTodo} />
+            {/* now we pass our object in the Todos component of our website */}
+          <Todos todos={todos} onDelete={onDelete} />
 
-      <Addtodo addTodo={addTodo} />
+          </>
+        }/>
 
-      {/* now we pass our object in the Todos component of our website */}
 
-      <Todos todos={todos} onDelete={onDelete} />
+         <Route exact path="/About" element={<About />}/>
+      
+          
+
+          
+    </Routes>
+
+    
+
+      
+      
       <Footer />
     </div>
-  </>
+  </Router>
   );
 }
 
